@@ -26,3 +26,7 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Successfully logged out.")
     return redirect('users:login')
+
+@login_required(login_url='users:login')
+def user(request):
+    return render(request, 'tasks/index.html', {'user': request.user})
