@@ -10,21 +10,21 @@ function App() {
 
     // Fetch tasks from the server
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/tasks/api/tasks/`)
+        axios.get(`http://127.0.0.1:8007/tasks/api/tasks/`)
             .then(response => setTasks(response.data))
             .catch(error => console.error("Error fetching tasks:", error));
     }, []);
 
     // Add a new task
     const addTask = (taskName) => {
-        axios.post(`http://127.0.0.1:8000/tasks/api/tasks/create/`, { task: taskName })
+        axios.post(`http://127.0.0.1:8007/tasks/api/tasks/create/`, { task: taskName })
             .then(response => setTasks([...tasks, response.data.task]))
             .catch(error => console.error("Error adding task:", error));
     };
 
     // Delete a task
     const deleteTask = (taskId) => {
-        axios.delete(`http://127.0.0.1:8000/tasks/api/tasks/delete/${taskId}/`)
+        axios.delete(`http://127.0.0.1:8007/tasks/api/tasks/delete/${taskId}/`)
             .then(() => setTasks(tasks.filter(task => task.id !== taskId)))
             .catch(error => console.error("Error deleting task:", error));
     };
